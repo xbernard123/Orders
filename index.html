@@ -10,31 +10,17 @@
 
   <title>Order Transaction Application</title>
 
-  <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Custom styles for this template -->
   <link href="css/shop-homepage.css" rel="stylesheet">
 
 </head>
 
 <body>
-
-  <!-- Navigation -->
-  <!-- Page Content -->
   <div class="container">
-
     <div class="row">
-
-      <div class="col-lg-3">
-
-
-      </div>
-      <!-- /.col-lg-3 -->
-<!DOCTYPE html>
 <html>
   <head>
-    <title>Account registration form</title>
+    <title>Product registration form</title>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
     <style>
@@ -48,6 +34,19 @@
       font-family: Roboto, Arial, sans-serif;
       font-size: 14px;
       color: #666;
+      }
+      .account-details, .personal-details {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      }
+      .account-details >div, .personal-details >div >div {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      }
+      .account-details >div, .personal-details >div, input, label {
+      width: 100%;
       }
       h1 {
       margin: 0;
@@ -71,19 +70,6 @@
       border: none;
       border-top: 1px solid #8ebf42;
       }
-      .account-details, .personal-details {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      }
-      .account-details >div, .personal-details >div >div {
-      display: flex;
-      align-items: center;
-      margin-bottom: 10px;
-      }
-      .account-details >div, .personal-details >div, input, label {
-      width: 100%;
-      }
       label {
       padding: 0 5px;
       text-align: right;
@@ -92,46 +78,6 @@
       input {
       padding: 5px;
       vertical-align: middle;
-      }
-      .checkbox {
-      margin-bottom: 10px;
-      }
-      select, .children, .gender, .bdate-block {
-      width: calc(100% + 26px);
-      padding: 5px 0;
-      }
-      select {
-      background: transparent;
-      }
-      .gender input {
-      width: auto;
-      } 
-      .gender label {
-      padding: 0 5px 0 0;
-      } 
-      .bdate-block {
-      display: flex;
-      justify-content: space-between;
-      }
-      .birthdate select.day {
-      width: 35px;
-      }
-      .birthdate select.mounth {
-      width: calc(100% - 94px);
-      }
-      .birthdate input {
-      width: 38px;
-      vertical-align: unset;
-      }
-      .checkbox input, .children input {
-      width: auto;
-      margin: -2px 10px 0 0;
-      }
-      .checkbox a {
-      color: #8ebf42;
-      }
-      .checkbox a:hover {
-      color: #82b534;
       }
       button {
       width: 100%;
@@ -154,6 +100,13 @@
       label {
       width: 40%;
       }
+          .alert {
+              background: lightblue;
+              text-align: center;
+              color: white;
+              margin-bottom: 10px;
+              display: none;
+          }
       input {
       width: 60%;
       }
@@ -165,24 +118,30 @@
   </head>
   <body>
     <div class="main-block">
-    <form action="submission.html">
+    <form id="ProductForm">
       <fieldset>
         <legend>
-          <h3>Name any Product</h3>
+          <h3>Name any Product</h3><div class="alert">Transaction has been saved!</div>
         </legend>
-        <div  class="account-details">
-          <div><label>Product Name</label><input type="text" name="name" required></div>
-          <div><label>Quantity</label><input type="number" name="name" required></div>
+        <div class="account-details">
+            <div>
+              <label>Product Name</label>
+              <input type="text" name="pname" id="pname" required>
+            </div>
+            <div>
+              <label>Quantity</label>
+              <input type="number" name="quantity" id="quantity" required>
+            </div>
         </div>
       </fieldset>
-      <button type="submit" href="submission.html">Submit</button>
+      <button type="submit" href="">Submit</button>
     </form>
     </div> 
   </body>
 </html>
       <div class="col-lg-9">
         <div class="row">
-
+        
         <legend>
           <h3>Sample Product Names</h3>
         </legend>
@@ -235,31 +194,85 @@
               </div>
             </div>
           </div>
-            
         </div>
-        <!-- /.row -->
-
       </div>
-      <!-- /.col-lg-9 -->
-
     </div>
-    <!-- /.row -->
-
   </div>
-  <!-- /.container -->
 
-  <!-- Footer -->
   <footer class="py-2 bg-dark">
     <div class="container">
       <p class="m-0 text-center text-white">This is the end page for this Transaction Application</p>
     </div>
-    <!-- /.container -->
   </footer>
 
-  <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-</body>
+    
 
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-database.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  var firebaseConfig = {
+    apiKey: "AIzaSyAOW5RGYi6-SLdF2rB8ySU6CkC0JgSyblQ",
+    authDomain: "order-f29ec.firebaseapp.com",
+    projectId: "order-f29ec",
+    storageBucket: "order-f29ec.appspot.com",
+    messagingSenderId: "104994867683",
+    appId: "1:104994867683:web:9d1a5a338af219a612f8d6",
+    measurementId: "G-QRRDLGN8M6"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+
+    var productReference = firebase.database().ref('products');
+    
+    
+    document.getElementById('ProductForm').addEventListener('submit', submitForm);
+
+function submitForm(e){
+    e.preventDefault();
+    
+    //get values
+    var pname = getInputVal('pname');
+    var quantity = getInputVal('quantity');
+    
+    saveToDatabase(pname, quantity);
+    
+    document.querySelector('.alert').style.display = 'block';
+
+    setTimeout(function(){
+        document.querySelector('.alert').style.display = 'none';
+    },2000);
+    
+    document.getElementById('ProductForm').reset();
+}
+function getInputVal(val){
+    return document.getElementById(val).value;
+}
+    
+function saveToDatabase(pname,quantity){
+    var newProductReference = productReference.push();
+    newProductReference.set({
+        pname: pname,
+        quantity: quantity
+    })
+    
+}
+    
+
+
+    
+    </script>
+</body>
 </html>
